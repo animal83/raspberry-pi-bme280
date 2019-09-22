@@ -31,5 +31,9 @@ bme280
 ```
 Output should look like this
 ```
-{"sensor":"bme280", "humidity":54.36, "pressure":1011.89, "temperature":25.58, "altitude":9.23, "timestamp":1469568295}
+(25.58, 54.36, 1011.89)
+
 ```
+ugly but it works
+
+mysql -u user -pgeheim database -e  "INSERT INTO table(temp,humidity, pressure) VALUES $(./bme280)"
