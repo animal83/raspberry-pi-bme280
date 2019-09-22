@@ -78,11 +78,9 @@ int main() {
   float t = compensateTemperature(t_fine); // C
   float p = compensatePressure(raw.pressure, &cal, t_fine) / 100; // hPa
   float h = compensateHumidity(raw.humidity, &cal, t_fine);       // %
-  float a = getAltitude(p);                         // meters
+  //float a = getAltitude(p);                         // meters
 
-  printf("{\"sensor\":\"bme280\", \"humidity\":%.2f, \"pressure\":%.2f,"
-    " \"temperature\":%.2f, \"altitude\":%.2f, \"timestamp\":%d}\n",
-    h, p, t, a, (int)time(NULL));
+  printf("(%.2f, %.2f, %.2f)", t, h, p);
 
   return 0;
 }
@@ -199,6 +197,8 @@ void getRawData(int fd, bme280_raw_data *raw) {
   raw->humidity = (raw->humidity | raw->hlsb);
 }
 
+
+/*
 float getAltitude(float pressure) {
   // Equation taken from BMP180 datasheet (page 16):
   //  http://www.adafruit.com/datasheets/BST-BMP180-DS000-09.pdf
@@ -209,4 +209,4 @@ float getAltitude(float pressure) {
 
   return 44330.0 * (1.0 - pow(pressure / MEAN_SEA_LEVEL_PRESSURE, 0.190294957));
 }
-
+*/
